@@ -1,0 +1,107 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+management:
+  security:
+    enabled: false
+  health:
+    readinessState:
+      enabled: true
+    livenessState:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      base-path: /manage
+      exposure:
+        include: health, info, metrics, loggers, prometheus
+  endpoint:
+    health:
+      show-details: always
+      group:
+        readiness:
+          include: redis
+        liveness:
+          include: redis
+      probes:
+        enabled: true
+  management:
+    tracing:
+      sampling:
+        probability: 0.1
+    zipkin:
+      tracing:
+        endpoint: http://zipkin-server:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
+    com.tagetik.mlinvoker: ${LOGGING_LEVEL:INFO}
+    org.apache.kafka.common.metrics: ERROR
+    org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
+
+
+spring:
+  application:
+    name: ${APPLICATION_NAME:ML_IP_SPRINT}
+  cache:
+    type: REDIS
+  kafka:
+    consumer:
+      bootstrap-servers: ${BOOTSTRAP_SERVER:${bootstrap-servers}}
+      group-id: ${CONSUMER_GROUP_ID:MLInvoker}
+      max-poll-records: 50
+    producer:
+      bootstrap-servers: ${BOOTSTRAP_SERVER:${bootstrap-servers}}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      concurrency: ${CONSUMER_CONCURRENCY:1}
+    constant:
+      charset-name: "UTF-8"
+      semicolon-delimiter: ";"
+      new-line-separator: "\n"
+      rows-for-split: 1000
+      event-name: "ml-prediction"
+      ok: "0"
+      ko: "1"
+      error-code-kafka-ErrorUnknown: "ErrorUnknown"
+      error-code-kafka-GenericError: "Generic Error"
+  cloud:
+    config:
+      enabled: false
+      uri: ${SPRING_CLOUD_CONFIG_SERVER_URL:http://localhost:8888}
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+
+
+bootstrap-servers: http://172.20.6.4:31090
+topics:
+  producer:
+    ipsprint: tgk.ml.ipsprint
+  consumer:
+    command:
+      name: ${TOPICS_CONSUMER:tgk.ml.command}
+      partitions: ${TOPIC_COMMAND_PARTITION:3}
+    action:
+      name: tgk.ml.action
+    deployments:
+      name: tgk.ml.models.deployments
+    train:
+      name: tgk.ml.models.train
+    execute:
+      name: tgk.ml.models.execute
+
+jwt-configuration:
+  secret: ${JWT_SECRET:UwcMOxe0Hx8fJep0biXiLslTWDdcBXThvfdXwl+W76oAAQsl9vj7D8EdmHkJTapw2Wd/Zw0psM0GPIXKrmw=}
+  algorithm: ${JWT_ALGORITHM-:HS512}
+  issuer: ${JWT_ISSUER:Tagetik}
+  expirationSeconds: ${JWT_EXPIRATIONSECONDS:60}
+
+cloud:
+  aws:
+    bucket-name-training: ${TRAINING_BUCKET:usrv-ml-testinfra-training}
+    distributed-elaboration:
+      input:
+        bucket-name: ${DISTRIBUTED_ML_INPUT_BUCKET_NAME:distributed-elaboration-bucket}
