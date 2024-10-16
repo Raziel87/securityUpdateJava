@@ -33,6 +33,7 @@
 		<embedded.redis.version>1.4.2</embedded.redis.version>
 		<commons.io.version>2.11.0</commons.io.version>
 		<s3.version>2.20.12</s3.version>
+		<embedded.ozimov.version>0.7.3</embedded.ozimov.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -70,6 +71,11 @@
 			<artifactId>embedded-redis</artifactId>
 			<version>${embedded.redis.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>it.ozimov</groupId>
+			<artifactId>embedded-redis</artifactId>
+			<version>${embedded.ozimov.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.redisson</groupId>
