@@ -439,7 +439,7 @@
 		<spring.boot.version>3.2.4</spring.boot.version>
 		<spring-boot-dependencies.version>3.2.4</spring-boot-dependencies.version>
 		<testcontainers.version>1.20.1</testcontainers.version>
-		<lombok.version>1.18.32</lombok.version>
+		<lombok.version>1.18.34</lombok.version>
 		<tgkr-common-library.version>1.4.4</tgkr-common-library.version>
 		<nimbus-jose-jwt.version>9.37.3</nimbus-jose-jwt.version>
 		<modelmapper.version>3.2.0</modelmapper.version>
