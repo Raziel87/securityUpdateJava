@@ -441,7 +441,7 @@
 		<testcontainers.version>1.20.1</testcontainers.version>
 		<lombok.version>1.18.32</lombok.version>
 		<tgkr-common-library.version>1.4.4</tgkr-common-library.version>
-		<nimbus-jose-jwt.version>9.37.3</nimbus-jose-jwt.version>
+		<nimbus-jose-jwt.version>9.41.2</nimbus-jose-jwt.version>
 		<modelmapper.version>3.2.0</modelmapper.version>
 		<embedded-redis.version>0.7.3</embedded-redis.version>
 		<redis.clients.jedis.version>5.0.2</redis.clients.jedis.version>
