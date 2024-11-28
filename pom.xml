@@ -399,7 +399,7 @@
 		<skipDocGeneration>true</skipDocGeneration>
 		<prj.sonar.coverage.basedir>${project.basedir}/../tgkr-backendforfrontend-sonar-report</prj.sonar.coverage.basedir>
 		<failBuildOnCVSS>7</failBuildOnCVSS>
-		<owaspDependencyCheckVersion>10.0.2</owaspDependencyCheckVersion>
+		<owaspDependencyCheckVersion>10.0.4</owaspDependencyCheckVersion>
 
 		<!-- Dependency plugin versions -->
 		<jacoco.plugin.version>0.8.10</jacoco.plugin.version>
