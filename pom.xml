@@ -430,7 +430,7 @@
 
 
 		<!-- Dependency versions -->
-		<assertj.version>3.25.3</assertj.version>
+		<assertj.version>3.26.3</assertj.version>
 		<aws-java-sdk.version>2.25.33</aws-java-sdk.version>
 		<commons-lang.version>3.14.0</commons-lang.version>
 		<junit.version>5.10.2</junit.version>
